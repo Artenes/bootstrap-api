@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
+use Webpatser\Uuid\Uuid;
 
 /**
  * Merchant is the application that consumes the api.
@@ -26,6 +28,37 @@ class Merchant extends Model implements Authenticatable
      * @var bool
      */
     public $incrementing = false;
+
+    /**
+     * Don't protect against mass assignment.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+    /**
+     * Creates a new merchant.
+     *
+     * It returns the generated merchant key and secret in an array.
+     *
+     * @param string $description
+     * @return array
+     */
+    public static function createNew($description)
+    {
+
+        $key = Uuid::generate(config('app.uuid_version'));
+        $secret = str_random();
+
+        static::create([
+            'key' => $key,
+            'secret' => Hash::make($secret),
+            'description' => $description,
+        ]);
+
+        return compact('key', 'secret');
+
+    }
 
     /**
      * Get the name of the unique identifier for the user.
