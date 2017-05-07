@@ -19,8 +19,7 @@ class CreateMerchantsTable extends Migration
 
             $table->uuid('key')->primary();
             $table->string('secret');
-            $table->string('name');
-            $table->string('description')->nullable();
+            $table->string('description');
             $table->timestamps();
 
         });
