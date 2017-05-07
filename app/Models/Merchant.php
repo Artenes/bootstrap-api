@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Hash;
 use Webpatser\Uuid\Uuid;
 
@@ -14,6 +15,8 @@ use Webpatser\Uuid\Uuid;
  */
 class Merchant extends Model implements Authenticatable
 {
+
+    use SoftDeletes;
 
     /**
      * The primary key.
@@ -35,6 +38,13 @@ class Merchant extends Model implements Authenticatable
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * The deleted date.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * Creates a new merchant.

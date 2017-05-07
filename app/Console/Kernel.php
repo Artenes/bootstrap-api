@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\MerchantDelete;
 use App\Console\Commands\MerchantList;
 use App\Console\Commands\MerchantNew;
 use Illuminate\Console\Scheduling\Schedule;
@@ -17,7 +18,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
 
         MerchantNew::class,
-        MerchantList::class
+        MerchantList::class,
+        MerchantDelete::class
 
     ];
 
