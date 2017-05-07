@@ -36,7 +36,7 @@ class MerchantList extends Command
 
         if (empty($merchants)) {
 
-            $this->info('There are no merchants registered. Create a new one with php artisan merchant:new MyMerchantName');
+            $this->info('There are no merchants registered. Create a new one with php artisan merchant:new');
             return 0;
 
         }
