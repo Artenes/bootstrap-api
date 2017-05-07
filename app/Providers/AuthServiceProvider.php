@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
+use App\app\Providers\MerchantAuthProvider;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
+
     /**
      * The policy mappings for the application.
      *
@@ -23,8 +25,15 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         $this->registerPolicies();
 
-        //
+        Auth::provider('merchant', function () {
+
+            return new MerchantAuthProvider();
+
+        });
+
     }
+
 }
