@@ -136,7 +136,7 @@ class ApiResponse extends JsonResponse
      * @param $data
      * @return $this
      */
-    public function setData($data = [])
+    public function setResponseData($data = [])
     {
 
         $this->responseData = $data;
@@ -172,7 +172,8 @@ class ApiResponse extends JsonResponse
      * @param $errors
      * @return $this
      */
-    public function setErrors($errors) {
+    public function setErrors($errors)
+    {
 
         $this->errors = $errors;
         $this->refreshData();
@@ -224,7 +225,7 @@ class ApiResponse extends JsonResponse
 
         $this->data = json_encode($response);
 
-        if (! $this->hasValidJson(json_last_error()))
+        if (!$this->hasValidJson(json_last_error()))
             throw new InvalidArgumentException(json_last_error_msg());
 
         return $this->update();
